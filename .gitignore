@@ -1,0 +1,69 @@
+*.zip
+
+# temp files
+tmp/
+*.tmp
+*.bak
+*.swp
+*~
+.*
+!.gitignore
+*.dat
+*.out
+
+# cmake artefacts
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+#driver
+*.ko
+*.o
+*.mod.c
+*.symvers
+*.order
+
+#log files
+*.log
+*.debug
+*.jou
+vivado_pid*.str
+
+# hls projects
+solution*/
+*.app
+*.xml
+.apc/
+.cproject
+.project
+.settings/
+
+#vivado ip files
+*.xml
+#hdl/
+misc/
+sim/
+synth/
+simulation/
+doc/
+build/
+ip/
+iprepo/
+*_stub.v
+*_stub.vhdl
+*_funcsim.v
+*_funcsim.vhdl
+*.upgrade_log
+*sim_netlist.v
+*sim_netlist.vhdl
+*.xdc
+*.vho
+#checkpoints
+*.dcp
+
+# wireshar
+*.pcapng
+
+# debug folders
+debug_*

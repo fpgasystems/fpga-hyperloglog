@@ -1,0 +1,5 @@
+# cmake artefacts
+make.tcl
+
+# build folders
+build/
