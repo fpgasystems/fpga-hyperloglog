@@ -36,3 +36,13 @@ $ make installip
 ```
 
 After 'make installip' command the ip of the module could be found in ../iprepo 
+
+##Citation
+If you use the hyperloglog accelerator in your project please cite the following paper and/or link to the github project:
+
+@INPROCEEDINGS{hll2020, 
+    author={A. Kulkarni and M. Chiosa and T. B. Preu{\ss}er and K. Kara and D. Sidler and G. Alonso}, 
+    booktitle={FPL},
+    title={{HyperLogLog Sketch Acceleration on FPGA}}, 
+    year ={2020},
+}
