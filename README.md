@@ -50,7 +50,7 @@ After 'make installip' command the ip of the module could be found in ../iprepo
 - Gustavo Alonso alonso@inf.ethz.ch
 
 ## Publication(s)
-- A. Kulkarni, M.Chiosa, T.B.Preu\{ss}er, K.Kara, D. Sidler, G. Alonso, 
+- A. Kulkarni, M.Chiosa, T.B.Preußer, K.Kara, D. Sidler, G. Alonso, 
 *HyperLogLog Sketch Accleration on FPGA,* in FPL'20.
 
 
