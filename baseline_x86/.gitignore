@@ -1,0 +1,5 @@
+*.o
+err_vs_card
+hll_bench
+bench.log
+error.dat
