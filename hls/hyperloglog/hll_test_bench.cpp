@@ -25,9 +25,11 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include "hyperloglog.hpp"
+#define line_width NUM_PIPELINES*32
 
-#define max_count 1000000
-ap_uint<512> data_merge (
+#define max_count 100000
+
+ap_uint<line_width> data_merge (
 					uint32_t inp1,
 					uint32_t inp2,
 					uint32_t inp3,
@@ -44,24 +46,24 @@ ap_uint<512> data_merge (
 					uint32_t inp14,
 					uint32_t inp15,
 					uint32_t inp16
-){
+					){
 	return
-			(((ap_uint<512>) inp16) << 480) |
-			(((ap_uint<512>) inp15)  << 448) |
-			(((ap_uint<512>) inp14)  << 416) |
-			(((ap_uint<512>) inp13)  << 384) |
-			(((ap_uint<512>) inp12)  << 352) |
-			(((ap_uint<512>) inp11)  << 320) |
-			(((ap_uint<512>) inp10) << 288) |
-			(((ap_uint<512>) inp9)  << 256) |
-			(((ap_uint<512>) inp8)  << 224) |
-			(((ap_uint<512>) inp7)  << 192) |
-			(((ap_uint<512>) inp6)  << 160) |
-			(((ap_uint<512>) inp5)  << 128) |
-			(((ap_uint<512>) inp4)  << 96) |
-			(((ap_uint<512>) inp3)  << 64) |
-			(((ap_uint<512>) inp2)  << 32) |
-			((ap_uint<512>) inp1);
+			(((ap_uint<line_width>) inp16) << 480) |
+			(((ap_uint<line_width>) inp15)  << 448) |
+			(((ap_uint<line_width>) inp14)  << 416) |
+			(((ap_uint<line_width>) inp13)  << 384) |
+			(((ap_uint<line_width>) inp12)  << 352) |
+			(((ap_uint<line_width>) inp11)  << 320) |
+			(((ap_uint<line_width>) inp10) << 288) |
+			(((ap_uint<line_width>) inp9)  << 256) |
+			(((ap_uint<line_width>) inp8)  << 224) |
+			(((ap_uint<line_width>) inp7)  << 192) |
+			(((ap_uint<line_width>) inp6)  << 160) |
+			(((ap_uint<line_width>) inp5)  << 128) |
+			(((ap_uint<line_width>) inp4)  << 96) |
+			(((ap_uint<line_width>) inp3)  << 64) |
+			(((ap_uint<line_width>) inp2)  << 32) |
+			((ap_uint<line_width>) inp1);
 }
 
 int main (){
@@ -79,7 +81,7 @@ int main (){
     printf("\n Hyperloglog..\n");
     uint32_t i = 1;
 	uint32_t j;
-    ap_uint<512> data_sent;
+    ap_uint<line_width> data_sent;
     for(i=1; i<=max_count; i=i+16){
     	data_sent = data_merge(i,
     						   i+1,
@@ -138,4 +140,3 @@ int main (){
 
     return 0;
 }
-
