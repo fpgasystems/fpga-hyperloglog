@@ -24,17 +24,12 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
-//
-// Created by Amit Kulkarni on 06-Apr-19.
-// Test bench for HLL
-//
 #include "hyperloglog.hpp"
 
-#define max_count 100000
-ap_uint<320> data_merge (
+#define max_count 1000000
+ap_uint<512> data_merge (
 					uint32_t inp1,
-					uint32_t inp2					,
+					uint32_t inp2,
 					uint32_t inp3,
 					uint32_t inp4,
 					uint32_t inp5,
@@ -42,19 +37,31 @@ ap_uint<320> data_merge (
 					uint32_t inp7,
 					uint32_t inp8,
 					uint32_t inp9,
-					uint32_t inp10
+					uint32_t inp10,
+					uint32_t inp11,
+					uint32_t inp12,
+					uint32_t inp13,
+					uint32_t inp14,
+					uint32_t inp15,
+					uint32_t inp16
 ){
 	return
-			(((ap_uint<320>) inp10) << 288) |
-			(((ap_uint<320>) inp9)  << 256) |
-			(((ap_uint<320>) inp8)  << 224) |
-			(((ap_uint<320>) inp7)  << 192) |
-			(((ap_uint<320>) inp6)  << 160) |
-			(((ap_uint<320>) inp5)  << 128) |
-			(((ap_uint<320>) inp4)  << 96) |
-			(((ap_uint<320>) inp3)  << 64) |
-			(((ap_uint<320>) inp2)  << 32) |
-			((ap_uint<320>) inp1);
+			(((ap_uint<512>) inp16) << 480) |
+			(((ap_uint<512>) inp15)  << 448) |
+			(((ap_uint<512>) inp14)  << 416) |
+			(((ap_uint<512>) inp13)  << 384) |
+			(((ap_uint<512>) inp12)  << 352) |
+			(((ap_uint<512>) inp11)  << 320) |
+			(((ap_uint<512>) inp10) << 288) |
+			(((ap_uint<512>) inp9)  << 256) |
+			(((ap_uint<512>) inp8)  << 224) |
+			(((ap_uint<512>) inp7)  << 192) |
+			(((ap_uint<512>) inp6)  << 160) |
+			(((ap_uint<512>) inp5)  << 128) |
+			(((ap_uint<512>) inp4)  << 96) |
+			(((ap_uint<512>) inp3)  << 64) |
+			(((ap_uint<512>) inp2)  << 32) |
+			((ap_uint<512>) inp1);
 }
 
 int main (){
@@ -72,8 +79,8 @@ int main (){
     printf("\n Hyperloglog..\n");
     uint32_t i = 1;
 	uint32_t j;
-    ap_uint<320> data_sent;
-    for(i=1; i<=max_count; i=i+10){
+    ap_uint<512> data_sent;
+    for(i=1; i<=max_count; i=i+16){
     	data_sent = data_merge(i,
     						   i+1,
     						   i+2,
@@ -83,12 +90,18 @@ int main (){
     						   i+6,
     						   i+7,
     						   i+8,
-    						   i+9
+    						   i+9,
+    						   i+10,
+    						   i+11,
+    						   i+12,
+    						   i+13,
+    						   i+14,
+							   i+15
     	);
 
     	data_in.data = data_sent;
     	data_in.last = 0;
-    	data_in.keep = 0xFFFFFFFFFF;
+    	data_in.keep = 0xFFFFFFFFFFFFFFFF;
     	s_axis_input_tuple.write(data_in);
 
         hyperloglog(s_axis_input_tuple,
@@ -108,30 +121,6 @@ int main (){
     for(i=1; i<=2*num_buckets_m;i++){
         hyperloglog(s_axis_input_tuple, m_axis_write_cmd, m_axis_write_data, regBaseAddr);
     }
-
-//    for(i=1; i<=max_count; i++){
-//    	data_in.data = i;
-//    	data_in.last = 0;
-//    	data_in.keep = 0xF;
-//    	s_axis_input_tuple.write(data_in);
-//
-//        hyperloglog(s_axis_input_tuple,
-//        		m_axis_write_cmd,
-//				m_axis_write_data,
-//				regBaseAddr);
-//    }
-//
-//    	//The last
-//  		data_in.data = i;
-//    	data_in.last = 1;
-//    	s_axis_input_tuple.write(data_in);
-//        hyperloglog(s_axis_input_tuple, m_axis_write_cmd, m_axis_write_data, regBaseAddr);
-//
-//    	data_in.keep = 0;
-//
-////    for(i=1; i<=2*num_buckets_m;i++){
-////        hyperloglog(s_axis_input_tuple, m_axis_write_cmd, m_axis_write_data, regBaseAddr);
-////    }
 
     if(!m_axis_write_data.empty())
     {
