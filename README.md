@@ -45,8 +45,8 @@ After 'make installip' command the ip of the module could be found in ../iprepo
 - Amit Kulkarni amit.kulkarni@ieee.org
 - Monica Chiosa monica.chiosa@inf.ethz.ch
 - Thomas B. Preußer tpreusser@inf.ethz.ch
-- Kaan Kara kaan.kara@ioutlook.com
-- David Sidler david.sidler@inf.ethz.ch
+- Kaan Kara kaan.kara@outlook.com
+- David Sidler david.sidler@microsoft.com
 - Gustavo Alonso alonso@inf.ethz.ch
 
 ## Publication(s)
